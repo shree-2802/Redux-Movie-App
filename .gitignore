@@ -6,7 +6,7 @@
 .pnp.js
 
 # .gitignorefile
-moviesAPIKey.tsx
+src/Common/api/movieAPIKey.tsx
 
 # testing
 /coverage
