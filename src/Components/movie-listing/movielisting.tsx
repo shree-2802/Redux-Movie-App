@@ -1,10 +1,22 @@
-import React from 'react'
-// import '/movielisting.scss';
+import './movielisting.scss';
+import { useSelector } from 'react-redux';
+import { getAllMovies } from '../../redux/movies/movieSlice';
+import { MovieData } from '../../Types/types';
+import MovieCard from '../movie-card/movieCard';
 
 const Movielisting = () => {
-  return (
-    <div>movielisting</div>
-  )
-}
+  const Movies = useSelector(getAllMovies);
+  let renderMovies: JSX.Element | JSX.Element[];
 
-export default Movielisting
+  renderMovies =
+    Movies.Response === 'true' ? (
+      Movies?.Search.map((item: MovieData, index) => {
+        return <MovieCard key={index} data={item} />;
+      })
+    ) : (
+      <></>
+    );
+  return <div>{renderMovies}</div>;
+};
+
+export default Movielisting;
