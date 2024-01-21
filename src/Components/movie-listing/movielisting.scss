@@ -1,6 +1,8 @@
 @use '../../Common/styles';
+@use '../../Common/colors.scss' as color;
 
 .app__movie-listing {
   flex-wrap: wrap;
   padding: 2rem;
+  color: color.$font-primary;
 }
