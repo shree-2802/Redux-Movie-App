@@ -9,14 +9,19 @@ const Movielisting = () => {
   let renderMovies: JSX.Element | JSX.Element[];
 
   renderMovies =
-    Movies.Response === 'true' ? (
+    Movies.Response === 'True' ? (
+      (console.log('true'),
       Movies?.Search.map((item: MovieData, index) => {
         return <MovieCard key={index} data={item} />;
-      })
+      }))
     ) : (
-      <></>
+      <h1>Error</h1>
     );
-  return <div>{renderMovies}</div>;
+  return (
+    <div className='app__movie-listing flex-row_center--gap '>
+      {renderMovies}
+    </div>
+  );
 };
 
 export default Movielisting;
