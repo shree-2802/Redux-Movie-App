@@ -7,7 +7,8 @@ export type MovieData = {
 };
 
 export type MovieCard = {
-  Response: string;
+  Response?: string;
+  Error?: string;
   Search: [];
   totalResults: string;
 };
