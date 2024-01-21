@@ -15,7 +15,7 @@ const Movielisting = () => {
         return <MovieCard key={index} data={item} />;
       }))
     ) : (
-      <h1>Error</h1>
+      <h1>{Movies.Error}</h1>
     );
   return (
     <div className='app__movie-listing flex-row_center--gap '>
