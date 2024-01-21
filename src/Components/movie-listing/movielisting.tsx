@@ -1,5 +1,5 @@
 import React from 'react'
-import '/movielisting.scss';
+// import '/movielisting.scss';
 
 const Movielisting = () => {
   return (
