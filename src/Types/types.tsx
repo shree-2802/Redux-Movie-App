@@ -24,6 +24,7 @@ export type MovieData = {
   imdbID: string;
   imdbRating: string;
   imdbVotes: string;
+  [key: string]: string ;
 };
 
 export type MovieCard = {
@@ -38,4 +39,9 @@ export type jsonData = {
 };
 export type movieSend = {
   movies: Record<string, MovieData>;
+};
+
+export type lineDivType = {
+  title: string;
+  data: string;
 };
