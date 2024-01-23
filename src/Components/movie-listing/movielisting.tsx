@@ -15,7 +15,7 @@ const Movielisting = () => {
         return <MovieCard key={index} data={item} />;
       })
     ) : (
-      <h1>{Movies.Error}</h1>
+      <p>Loading...</p>
     );
   renderSeries =
     series.Response === 'True' ? (
@@ -23,7 +23,7 @@ const Movielisting = () => {
         return <MovieCard key={index} data={series} />;
       })
     ) : (
-      <h1>{series.Error}</h1>
+      <p color='white'>Loading...</p>
     );
   return (
     <div className='app__movielisting-container flex-column_center--gap '>
