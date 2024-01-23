@@ -9,7 +9,7 @@
   justify-content: space-between;
   padding: 3rem;
   &_left {
-    gap:1.6rem;
+    gap: 1.6rem;
     h1 {
       font-size: 38px;
       line-height: 3.6rem;
@@ -17,7 +17,9 @@
     p {
       gap: 1.7rem;
       line-height: 1.9rem;
+      color: colors.$font-secondary;
       span {
+        color: colors.$font-primary;
         width: max-content;
         display: flex;
         align-items: center;
@@ -37,7 +39,6 @@
       max-width: 500px;
     }
   }
-  
 }
 
 @media screen and (width<1100px) {
