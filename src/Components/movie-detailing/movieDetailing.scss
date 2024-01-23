@@ -1,0 +1,50 @@
+@use '../../Common/colors.scss' as colors;
+@import '../../Common/styles';
+.app__movie-detail-card {
+  color: colors.$font-primary;
+  gap: 2rem;
+  margin: 2rem;
+  background-color: colors.$secondary-color;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+  justify-content: space-between;
+  padding: 3rem;
+  &_left {
+    gap: 1.6rem;
+    h1 {
+      font-size: 38px;
+      line-height: 3.6rem;
+    }
+    p {
+      gap: 1.7rem;
+      line-height: 1.9rem;
+      color: colors.$font-secondary;
+      span {
+        color: colors.$font-primary;
+        width: max-content;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 16px;
+      }
+    }
+    & > p:nth-of-type(2) {
+      font-size: 18px;
+    }
+  }
+  &_right {
+    img {
+      width: 100%;
+      height: 100%;
+      min-width: 310px;
+      max-width: 500px;
+    }
+  }
+}
+
+@media screen and (width<1100px) {
+  .app__movie-detail-card {
+    flex-direction: column;
+    gap: 4rem;
+    align-items: center;
+  }
+}

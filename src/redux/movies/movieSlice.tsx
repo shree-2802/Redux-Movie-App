@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { RootState} from '../../Types/types';
+import { MovieCard, jsonData, MovieData, movieSend } from '../../Types/types';
 import movieAPI from '../../Common/api/movieAPI';
 import { APIKey } from '../../Common/api/movieAPIKey';
 
@@ -30,7 +30,7 @@ const initialState = {
   movies: {},
   series: {},
   MOrSDetails: {},
-} as RootState;
+};
 
 const movieSlice = createSlice({
   name: 'movies',
@@ -39,6 +39,12 @@ const movieSlice = createSlice({
     // addMovies: (state, { payload }) => {
     //   state.movies = payload;
     // },
+    removeSelectedMOrSDetails: (state) => {
+      return {
+        ...state,
+        MOrSDetails: {},
+      };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchMovies.fulfilled, (state, { payload }) => {
@@ -66,17 +72,17 @@ const movieSlice = createSlice({
   },
 });
 
-// export const { addMovies } = movieSlice.actions;
+export const { removeSelectedMOrSDetails } = movieSlice.actions;
 
-export const getAllMovies = (state: RootState) => {
+export const getAllMovies = (state: jsonData) => {
   return state.movies.movies;
 };
 
-export const getAllSeries = (state: RootState) => {
+export const getAllSeries = (state: jsonData) => {
   return state.movies.series;
 };
 
-export const getDetails = (state: RootState) => {
+export const getDetails = (state: movieSend) => {
   return state.movies.MOrSDetails;
 };
 
