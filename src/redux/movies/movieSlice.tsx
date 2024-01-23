@@ -29,7 +29,7 @@ export const fetchMOrSDetails = createAsyncThunk(
 const initialState = {
   movies: {},
   series: {},
-  MOrSDetails: {} as MovieData,
+  MOrSDetails: {},
 };
 
 const movieSlice = createSlice({
@@ -39,6 +39,12 @@ const movieSlice = createSlice({
     // addMovies: (state, { payload }) => {
     //   state.movies = payload;
     // },
+    removeSelectedMOrSDetails: (state) => {
+      return {
+        ...state,
+        MOrSDetails: {},
+      };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchMovies.fulfilled, (state, { payload }) => {
@@ -66,7 +72,7 @@ const movieSlice = createSlice({
   },
 });
 
-// export const { addMovies } = movieSlice.actions;
+export const { removeSelectedMOrSDetails } = movieSlice.actions;
 
 export const getAllMovies = (state: jsonData) => {
   return state.movies.movies;
