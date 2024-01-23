@@ -1,6 +1,18 @@
 @use '../../Common/styles';
+@use '../../Common/colors.scss' as color;
 
-.app__movie-listing {
-  flex-wrap: wrap;
+.app__movielisting-container {
+  gap: 4rem;
+  color: color.$font-primary;
   padding: 2rem;
+  text-align: center;
+  .app__movie-listing {
+    flex-wrap: wrap;
+    color: color.$font-primary;
+    padding: 1rem 0;
+  }
+  & > div > h3 {
+    font-size: 40px;
+    text-shadow: 2px 1px 8px color.$font-secondary;
+  }
 }
