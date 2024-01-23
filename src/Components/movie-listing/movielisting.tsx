@@ -11,10 +11,9 @@ const Movielisting = () => {
   let renderSeries: JSX.Element | JSX.Element[];
   renderMovies =
     Movies.Response === 'True' ? (
-      (console.log('true'),
       Movies?.Search.map((item: MovieData, index) => {
         return <MovieCard key={index} data={item} />;
-      }))
+      })
     ) : (
       <h1>{Movies.Error}</h1>
     );
