@@ -1,0 +1,11 @@
+.app__lineComponent{
+    display: flex;
+    align-items: center;
+    h5{
+        flex: 1;
+    }
+    p{
+        flex:8;
+        align-self: flex-start;
+    }
+}

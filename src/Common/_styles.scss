@@ -4,6 +4,19 @@
   align-items: center;
 }
 
+%flex-normal {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-column {
+  @extend %flex-normal;
+  gap: 0.7rem;
+}
+
+.flex-row {
+  display: flex;
+}
 .flex-row-center {
   @extend %flex--center;
 }
@@ -12,7 +25,10 @@
   flex-direction: column;
   @extend %flex--center;
 }
-
+.flex-column-gap{
+  @extend %flex-normal;
+  gap:0.5rem;
+}
 .flex-row_center--gap {
   @extend %flex--center;
   gap: 2rem;
@@ -21,5 +37,5 @@
 .flex-column_center--gap {
   @extend %flex--center;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
 }
