@@ -1,3 +1,6 @@
+import { CaseReducerWithPrepare, PayloadAction } from "@reduxjs/toolkit";
+import { type } from "os";
+
 export type MovieData = {
   Actors: string;
   Awards: string;
@@ -24,15 +27,16 @@ export type MovieData = {
   imdbID: string;
   imdbRating: string;
   imdbVotes: string;
-  [key: string]: string ;
+  [key: string]: string;
 };
 
 export type MovieCard = {
   Response?: string;
   Error?: string;
-  Search: [];
+  Search: MovieData[];
   totalResults: string;
 };
+
 
 export type jsonData = {
   movies: Record<string, MovieCard>;
@@ -45,3 +49,15 @@ export type lineDivType = {
   title: string;
   data: string;
 };
+
+export type searchType = {
+  movie: MovieCard;
+  series: MovieCard;
+};
+export type initialStateType = {
+  movies: MovieCard ;
+  series: MovieCard;
+  MOrSDetails: MovieData | null;
+  search: searchType;
+};
+
