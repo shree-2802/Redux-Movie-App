@@ -9,3 +9,7 @@
 body {
   background-color: $primary-color;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}

@@ -1,0 +1,26 @@
+.app__search {
+  height: 2.6rem;
+  width: max-content;
+  // align-items: center;
+  & input {
+    height: 100%;
+    // width:90%;
+    padding: 0rem 3.5rem 0rem 1rem;
+    margin-right: -2px;
+    font-size: 16px;
+    border-radius: 5px 0 0 5px;
+    border: 1px solid grey;
+  }
+  & button {
+    height: 100%;
+    font-size: 16px;
+    padding: 0rem 0.6rem;
+    text-align: center;
+    border-radius: 0px 5px 5px 0;
+    border: 1px solid grey;
+    cursor: pointer;
+  }
+}
+input:focus{
+    outline: none;
+}

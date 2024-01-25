@@ -3,7 +3,8 @@
 
 .app__movie-card {
   background-color: color.$secondary-color;
-  width: 310px;
+  max-width:310px;
+  min-width: 310px;
   height: 447px;
   display: flex;
   flex-direction: column;
