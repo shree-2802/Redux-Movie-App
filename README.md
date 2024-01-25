@@ -11,6 +11,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
     4.axios
     5.sass
     6.react-router-dom
+    7.React-icons
     
 ## Project Details
    This project is created in order to get familiar with react-redux and redux-toolkit.

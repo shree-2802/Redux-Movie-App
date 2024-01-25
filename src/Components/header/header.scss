@@ -1,0 +1,31 @@
+@use '../../Common/colors.scss' as colors;
+
+.app__header {
+  padding: 2rem 6rem;
+  display: flex;
+  background-color: colors.$secondary-color;
+  align-items: center;
+  justify-content: space-between;
+  color: colors.$font-secondary;
+  text-shadow: 1px 2px 5px rgba(25, 255, 255, 1);
+  margin: 10px 10px 0px 10px;
+  box-shadow: 0px 0px 5px rgba(25, 255, 255, 1);
+  animation: fadeIn 2s ease;
+  img {
+    width: 100%;
+    max-width: 100px;
+    max-height: 70px;
+  }
+  h3 {
+    font-size: 2.6rem;
+  }
+}
+
+@keyframes fadeIn{
+    from{
+        transform:scaleX(0);
+    }
+    to{
+        transform:scaleX(1);
+    }
+}

@@ -1,0 +1,45 @@
+@use '../../Common/styles';
+@use '../../Common/colors.scss' as color;
+
+.app__movielisting-container {
+  gap: 4rem;
+  color: color.$font-primary;
+  padding: 2rem;
+  text-align: center;
+  &-movieContainer {
+    position: relative;
+    // background-color: antiquewhite;
+    .app__movie-listing {
+      // flex-wrap: wrap;
+      overflow-x: scroll;
+      color: color.$font-primary;
+      padding: 1rem 2.9rem;
+      transition: scroll 0.5s;
+    }
+    & > div:nth-of-type(2) {
+      position: absolute;
+      display: flex;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      justify-content: space-between;
+      align-items: center;
+      // background-color: aliceblue;
+      .app-button {
+        width: 35px;
+        height: 35px;
+        padding: 7px;
+        background-color: color.$secondary-color;
+        font-size: 16px;
+        border-radius: 8px;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+        cursor: pointer;
+      }
+    }
+  }
+
+  & > div > h3 {
+    font-size: 40px;
+    text-shadow: 2px 1px 8px color.$font-secondary;
+  }
+}

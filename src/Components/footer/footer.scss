@@ -1,0 +1,10 @@
+@use '../../Common/colors.scss' as colors;
+@import '../../Common/styles';
+
+.app__footer {
+  color: colors.$font-secondary;
+  &--copyrights {
+    padding: 6rem;
+    background-color: colors.$secondary-color;
+  }
+}

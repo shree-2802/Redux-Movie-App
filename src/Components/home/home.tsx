@@ -1,10 +1,21 @@
-import React from 'react'
 import './home.scss';
+import Movielisting from '../movie-listing/movielisting';
+import { useEffect } from 'react';
+import { useAppDispatch } from '../../redux';
+import { fetchMovies, fetchSeries } from '../../redux/movies/movieSlice';
 
 const Home = () => {
-  return (
-    <div>home</div>
-  )
-}
+  const dispatch = useAppDispatch();
 
-export default Home
+  useEffect(() => {
+    dispatch(fetchMovies());
+    dispatch(fetchSeries());
+  }, [dispatch]);
+  return (
+    <div>
+      <Movielisting />
+    </div>
+  );
+};
+
+export default Home;
