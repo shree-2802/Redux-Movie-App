@@ -5,7 +5,7 @@ import { getAllMovies, getAllSeries } from '../../redux/movies/movieSlice';
 import { MovieData } from '../../Types/types';
 import MovieCard from '../movie-card/movieCard';
 import { RefObject, createRef } from 'react';
-
+// import { RootState } from '../../Types/types';
 type scrollElementType = HTMLDivElement | null;
 
 const Movielisting = () => {
@@ -14,6 +14,7 @@ const Movielisting = () => {
 
   const imgRef: RefObject<HTMLDivElement> = createRef();
   const serRef: RefObject<HTMLDivElement> = createRef();
+
   const scroll = (direction: string, ref: RefObject<HTMLDivElement>) => {
     const scrollEle: scrollElementType = ref.current;
     if (scrollEle) {
@@ -24,6 +25,7 @@ const Movielisting = () => {
       });
     }
   };
+
   let renderMovies: JSX.Element | JSX.Element[];
   let renderSeries: JSX.Element | JSX.Element[];
   renderMovies =
@@ -35,7 +37,7 @@ const Movielisting = () => {
       <p>Loading...</p>
     );
   renderSeries =
-    series.Response === 'True' ? (
+    series && series.Response === 'True' ? (
       series.Search.map((series, index) => {
         return <MovieCard key={index} data={series} />;
       })
