@@ -1,11 +1,13 @@
-import {
-  createAsyncThunk,
-  createSlice,
-} from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../index';
 import movieAPI from '../../Common/api/movieAPI';
 import { APIKey } from '../../Common/api/movieAPIKey';
-import { MovieCard, MovieData, initialStateType, searchType } from '../../Types/types';
+import {
+  MovieCard,
+  MovieData,
+  initialStateType,
+  searchType,
+} from '../../Types/types';
 
 export const fetchMovies = createAsyncThunk<MovieCard, void>(
   'movies/fetchMovies',
@@ -44,6 +46,7 @@ export const fetchSearch = createAsyncThunk(
     const seriesResponse = await movieAPI.get(
       `?apikey=${APIKey}&s=${searchText}&type=series`
     );
+    console.log('search');
     return { movies: movieResponse.data, series: seriesResponse.data };
   }
 );
@@ -64,7 +67,7 @@ const movieSlice = createSlice({
     removeSelectedMOrSDetails: (state) => {
       return {
         ...state,
-        MOrSDetails:null
+        MOrSDetails: null,
       };
     },
   },
