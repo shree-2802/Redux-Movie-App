@@ -61,3 +61,11 @@ export type initialStateType = {
   search: searchType;
 };
 
+export type ChildrenProps = {
+  children: React.ReactNode;
+};
+
+export type SearchContextType = {
+  search: searchType | null;
+  setSearch: React.Dispatch<React.SetStateAction<searchType | null>>;
+};
