@@ -2,18 +2,25 @@ import './movielisting.scss';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { getAllMovies, getAllSeries } from '../../redux/movies/movieSlice';
-import { MovieData } from '../../Types/types';
-import MovieCard from '../movie-card/movieCard';
-import { RefObject, createRef } from 'react';
+import { MovieCard, MovieData } from '../../Types/types';
+import MovieCardComp from '../movie-card/movieCard';
+import { RefObject, createRef, useContext } from 'react';
+import { SearchContext } from '../../context/Context';
 // import { RootState } from '../../Types/types';
+
 type scrollElementType = HTMLDivElement | null;
 
+export type MovieRenderingType = {
+  Details: MovieCard;
+};
 const Movielisting = () => {
   const Movies = useSelector(getAllMovies);
   const series = useSelector(getAllSeries);
 
   const imgRef: RefObject<HTMLDivElement> = createRef();
   const serRef: RefObject<HTMLDivElement> = createRef();
+
+  const value = useContext(SearchContext);
 
   const scroll = (direction: string, ref: RefObject<HTMLDivElement>) => {
     const scrollEle: scrollElementType = ref.current;
@@ -26,31 +33,25 @@ const Movielisting = () => {
     }
   };
 
-  let renderMovies: JSX.Element | JSX.Element[];
-  let renderSeries: JSX.Element | JSX.Element[];
-  renderMovies =
-    Movies.Response === 'True' ? (
-      Movies?.Search.map((item: MovieData, index) => {
-        return <MovieCard key={index} data={item} />;
-      })
+  const MovieRender = ({ Details }: MovieRenderingType) => {
+    return Details.Response === 'True' ? (
+      <>
+        {Details?.Search.map((item: MovieData, index) => {
+          return <MovieCardComp key={index} data={item} />;
+        })}
+      </>
     ) : (
       <p>Loading...</p>
     );
-  renderSeries =
-    series && series.Response === 'True' ? (
-      series.Search.map((series, index) => {
-        return <MovieCard key={index} data={series} />;
-      })
-    ) : (
-      <p color='white'>Loading...</p>
-    );
+  };
+
   return (
     <div className='app__movielisting-container flex-column-gap '>
       <div>
         <h3>Movies</h3>
         <div className='app__movielisting-container-movieContainer'>
           <div className='app__movie-listing flex-row-gap' ref={imgRef}>
-            {renderMovies}
+            <MovieRender Details={Movies} />
           </div>
           <div>
             <FaArrowLeft
@@ -70,7 +71,7 @@ const Movielisting = () => {
         <h3>Series</h3>
         <div className='app__movielisting-container-movieContainer'>
           <div className='app__movie-listing flex-row-gap' ref={serRef}>
-            {renderSeries}
+            <MovieRender Details={series}/>
           </div>
           <div>
             <FaArrowLeft

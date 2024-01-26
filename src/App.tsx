@@ -7,19 +7,22 @@ import {
   PageNotFound,
   Footer,
 } from './Components';
+import Context from './context/Context';
 
 const App = () => {
   return (
     <div className='sass'>
-      <Router>
-        <Header />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/movie/:id' element={<MovieDetailing />} />
-          <Route path='*' element={<PageNotFound />} />
-        </Routes>
-        <Footer />
-      </Router>
+      <Context>
+        <Router>
+          <Header />
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/movie/:id' element={<MovieDetailing />} />
+            <Route path='*' element={<PageNotFound />} />
+          </Routes>
+          <Footer />
+        </Router>
+      </Context>
     </div>
   );
 };
