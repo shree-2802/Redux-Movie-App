@@ -1,11 +1,13 @@
-import {
-  createAsyncThunk,
-  createSlice,
-} from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../index';
 import movieAPI from '../../Common/api/movieAPI';
 import { APIKey } from '../../Common/api/movieAPIKey';
-import { MovieCard, MovieData, initialStateType, searchType } from '../../Types/types';
+import {
+  MovieCard,
+  MovieData,
+  initialStateType,
+  searchType,
+} from '../../Types/types';
 
 export const fetchMovies = createAsyncThunk<MovieCard, void>(
   'movies/fetchMovies',
@@ -44,6 +46,7 @@ export const fetchSearch = createAsyncThunk(
     const seriesResponse = await movieAPI.get(
       `?apikey=${APIKey}&s=${searchText}&type=series`
     );
+    console.log('search');
     return { movies: movieResponse.data, series: seriesResponse.data };
   }
 );
@@ -51,7 +54,7 @@ const initialState: initialStateType = {
   movies: {} as MovieCard,
   series: {} as MovieCard,
   MOrSDetails: {} as MovieData | null,
-  search: {} as searchType,
+  search: {} as searchType | null,
 };
 
 const movieSlice = createSlice({
@@ -64,9 +67,15 @@ const movieSlice = createSlice({
     removeSelectedMOrSDetails: (state) => {
       return {
         ...state,
-        MOrSDetails:null
+        MOrSDetails: null,
       };
     },
+    removeSearch:(state)=>{
+      return{
+        ...state,
+        search:null
+      }
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(fetchMovies.fulfilled, (state, { payload }) => {
@@ -103,7 +112,7 @@ const movieSlice = createSlice({
   },
 });
 
-export const { removeSelectedMOrSDetails } = movieSlice.actions;
+export const { removeSelectedMOrSDetails,removeSearch } = movieSlice.actions;
 
 export const getAllMovies = (state: RootState) => {
   return state.movies.movies;
@@ -120,4 +129,5 @@ export const getDetails = (state: RootState) => {
 export const getSearch = (state: RootState) => {
   return state.movies.search;
 };
+
 export default movieSlice.reducer;

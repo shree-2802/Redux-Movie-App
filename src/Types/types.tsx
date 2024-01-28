@@ -1,5 +1,3 @@
-import { CaseReducerWithPrepare, PayloadAction } from "@reduxjs/toolkit";
-import { type } from "os";
 
 export type MovieData = {
   Actors: string;
@@ -37,7 +35,6 @@ export type MovieCard = {
   totalResults: string;
 };
 
-
 export type jsonData = {
   movies: Record<string, MovieCard>;
 };
@@ -52,12 +49,31 @@ export type lineDivType = {
 
 export type searchType = {
   movie: MovieCard;
-  series: MovieCard;
+  series: MovieCard | undefined;
 };
 export type initialStateType = {
-  movies: MovieCard ;
+  movies: MovieCard;
   series: MovieCard;
   MOrSDetails: MovieData | null;
-  search: searchType;
+  search: searchType|null;
 };
 
+export type ChildrenProps = {
+  children: React.ReactNode;
+};
+
+export type SearchContextType = {
+  search: searchType | null;
+  setSearch: React.Dispatch<React.SetStateAction<searchType | null>>;
+};
+
+export type MovieRenderingType = {
+  Details: MovieCard | undefined;
+};
+
+export type scrollType = (
+  direction: string,
+  ref: React.RefObject<HTMLDivElement>
+) => void;
+
+export type scrollElementType = HTMLDivElement | null;
