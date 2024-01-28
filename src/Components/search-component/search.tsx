@@ -1,6 +1,6 @@
 import React, { FormEvent, RefObject, useContext, useEffect } from 'react';
 import { FcSearch } from 'react-icons/fc';
-import { fetchSearch, getSearch } from '../../redux/movies/movieSlice';
+import { fetchSearch, getSearch, removeSearch } from '../../redux/movies/movieSlice';
 import { useAppDispatch } from '../../redux';
 import { useSelector } from 'react-redux';
 

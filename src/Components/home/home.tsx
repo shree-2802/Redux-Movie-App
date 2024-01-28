@@ -6,7 +6,6 @@ import { fetchMovies, fetchSeries } from '../../redux/movies/movieSlice';
 
 const Home = () => {
   const dispatch = useAppDispatch();
-
   useEffect(() => {
     dispatch(fetchMovies());
     dispatch(fetchSeries());
