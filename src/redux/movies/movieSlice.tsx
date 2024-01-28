@@ -54,7 +54,7 @@ const initialState: initialStateType = {
   movies: {} as MovieCard,
   series: {} as MovieCard,
   MOrSDetails: {} as MovieData | null,
-  search: {} as searchType,
+  search: {} as searchType | null,
 };
 
 const movieSlice = createSlice({
@@ -70,6 +70,12 @@ const movieSlice = createSlice({
         MOrSDetails: null,
       };
     },
+    removeSearch:(state)=>{
+      return{
+        ...state,
+        search:null
+      }
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(fetchMovies.fulfilled, (state, { payload }) => {
@@ -106,7 +112,7 @@ const movieSlice = createSlice({
   },
 });
 
-export const { removeSelectedMOrSDetails } = movieSlice.actions;
+export const { removeSelectedMOrSDetails,removeSearch } = movieSlice.actions;
 
 export const getAllMovies = (state: RootState) => {
   return state.movies.movies;
@@ -123,4 +129,5 @@ export const getDetails = (state: RootState) => {
 export const getSearch = (state: RootState) => {
   return state.movies.search;
 };
+
 export default movieSlice.reducer;
