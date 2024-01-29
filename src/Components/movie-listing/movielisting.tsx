@@ -1,44 +1,75 @@
 import './movielisting.scss';
 import { useSelector } from 'react-redux';
-import { getAllMovies, getAllSeries } from '../../redux/movies/movieSlice';
-import { MovieData } from '../../Types/types';
-import MovieCard from '../movie-card/movieCard';
-
+import {
+  getAllMovies,
+  getAllSeries,
+  getSearch,
+} from '../../redux/movies/movieSlice';
+import { MovieData, MovieRenderingType } from '../../Types/types';
+import MovieRenderComponent from '../../utils/movieRender';
+import MovieCardComp from '../movie-card/movieCard';
+import { RefObject, createRef, useEffect, useContext } from 'react';
+import { SearchContext } from '../../contextAPI/context';
 const Movielisting = () => {
   const Movies = useSelector(getAllMovies);
-  const series = useSelector(getAllSeries);
-  let renderMovies: JSX.Element | JSX.Element[];
-  let renderSeries: JSX.Element | JSX.Element[];
-  renderMovies =
-    Movies.Response === 'True' ? (
-      Movies?.Search.map((item: MovieData, index) => {
-        return <MovieCard key={index} data={item} />;
-      })
+  const Series = useSelector(getAllSeries);
+  // const [Movies, setMovies] = useState(movieReturned);
+  // const [Series, setSeries] = useState(seriesReturned);
+  const searchList = useSelector(getSearch);
+  const imgRef: RefObject<HTMLDivElement> = createRef();
+  const serRef: RefObject<HTMLDivElement> = createRef();
+  const search = useContext(SearchContext)?.search;
+  const MovieRender = ({ Details }: MovieRenderingType) => {
+    return Details?.Response === 'True' ? (
+      <>
+        {Details?.Search.map((item: MovieData, index) => {
+          return <MovieCardComp key={index} data={item} />;
+        })}
+      </>
     ) : (
-      <p>Loading...</p>
+      <p>{Details?.Error}</p>
     );
-  renderSeries =
-    series.Response === 'True' ? (
-      series.Search.map((series, index) => {
-        return <MovieCard key={index} data={series} />;
-      })
-    ) : (
-      <p color='white'>Loading...</p>
-    );
+  };
+  useEffect(() => {
+    console.log('movielisting ', searchList);
+  }, [searchList]);
   return (
-    <div className='app__movielisting-container flex-column_center--gap '>
-      <div>
-        <h3>Movies</h3>
-        <div className='app__movie-listing flex-row_center--gap'>
-          {renderMovies}
-        </div>
-      </div>
-      <div>
-        <h3>Series</h3>
-        <div className='app__movie-listing flex-row_center--gap'>
-          {renderSeries}
-        </div>
-      </div>
+    <div className='app__movielisting-container flex-column-gap '>
+      {search ? (
+        searchList?.movie ? (
+          <>
+            <MovieRenderComponent
+              Title={'Movies'}
+              reference={imgRef}
+              MovieRender={MovieRender}
+              RenderElement={searchList.movie}
+            />
+            <MovieRenderComponent
+              Title={'Series'}
+              reference={serRef}
+              MovieRender={MovieRender}
+              RenderElement={searchList.series}
+            />
+          </>
+        ) : (
+          <p>Loading</p>
+        )
+      ) : (
+        <>
+          <MovieRenderComponent
+            Title={'Movies'}
+            reference={imgRef}
+            MovieRender={MovieRender}
+            RenderElement={Movies}
+          />
+          <MovieRenderComponent
+            Title={'Series'}
+            reference={serRef}
+            MovieRender={MovieRender}
+            RenderElement={Series}
+          />
+        </>
+      )}
     </div>
   );
 };

@@ -40,7 +40,11 @@
     }
   }
 }
-
+.app__loading{
+  color:white;
+  text-align: center;
+  margin: 2rem;
+}
 @media screen and (width<1100px) {
   .app__movie-detail-card {
     flex-direction: column;

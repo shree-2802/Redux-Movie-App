@@ -6,11 +6,41 @@
   color: color.$font-primary;
   padding: 2rem;
   text-align: center;
-  .app__movie-listing {
-    flex-wrap: wrap;
-    color: color.$font-primary;
-    padding: 1rem 0;
+  &-movieContainer {
+    position: relative;
+    // background-color: antiquewhite;
+    .app__movie-listing {
+      // flex-wrap: wrap;
+      overflow-x: hidden;
+      color: color.$font-primary;
+      padding: 1rem 2.9rem;
+      transition: scroll 0.5s;
+    }
+    & > div:nth-of-type(2) {
+      .app-button {
+        width: 35px;
+        height: 35px;
+        padding: 7px;
+        background-color: color.$secondary-color;
+        font-size: 16px;
+        border-radius: 8px;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+        cursor: pointer;
+        // z-index: 2;
+        &:first-child{
+          position: absolute;
+          left:0px;
+          top: 224px;
+        }
+        &:nth-child(2){
+          position: absolute;
+          right:0px;
+          top: 224px;
+        }
+      }
+    }
   }
+
   & > div > h3 {
     font-size: 40px;
     text-shadow: 2px 1px 8px color.$font-secondary;
