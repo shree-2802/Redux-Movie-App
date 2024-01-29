@@ -7,20 +7,23 @@ import {
   PageNotFound,
   Footer,
 } from './Components';
+import Context from './contextAPI/context';
 
 const App = () => {
   return (
-    <div className='sass'>
-      <Router>
-        <Header />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/movie/:id' element={<MovieDetailing />} />
-          <Route path='*' element={<PageNotFound />} />
-        </Routes>
-        <Footer />
-      </Router>
-    </div>
+    <Context>
+      <div className='sass'>
+        <Router>
+          <Header />
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/movie/:id' element={<MovieDetailing />} />
+            <Route path='*' element={<PageNotFound />} />
+          </Routes>
+          <Footer />
+        </Router>
+      </div>
+    </Context>
   );
 };
 

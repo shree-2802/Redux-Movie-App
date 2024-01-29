@@ -11,20 +11,12 @@
     // background-color: antiquewhite;
     .app__movie-listing {
       // flex-wrap: wrap;
-      overflow-x: scroll;
+      overflow-x: hidden;
       color: color.$font-primary;
       padding: 1rem 2.9rem;
       transition: scroll 0.5s;
     }
     & > div:nth-of-type(2) {
-      position: absolute;
-      display: flex;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      justify-content: space-between;
-      align-items: center;
-      // background-color: aliceblue;
       .app-button {
         width: 35px;
         height: 35px;
@@ -34,6 +26,17 @@
         border-radius: 8px;
         box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
         cursor: pointer;
+        // z-index: 2;
+        &:first-child{
+          position: absolute;
+          left:0px;
+          top: 224px;
+        }
+        &:nth-child(2){
+          position: absolute;
+          right:0px;
+          top: 224px;
+        }
       }
     }
   }
