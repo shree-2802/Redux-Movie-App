@@ -1,22 +1,24 @@
 import './movielisting.scss';
 import { useSelector } from 'react-redux';
-import { getAllMovies, getAllSeries } from '../../redux/movies/movieSlice';
-import { MovieCard, MovieData, MovieRenderingType } from '../../Types/types';
+import {
+  getAllMovies,
+  getAllSeries,
+  getSearch,
+} from '../../redux/movies/movieSlice';
+import { MovieData, MovieRenderingType } from '../../Types/types';
 import MovieRenderComponent from '../../utils/movieRender';
 import MovieCardComp from '../movie-card/movieCard';
-import { RefObject, createRef, useContext, useEffect, useState } from 'react';
-import { SearchContext } from '../../context/Context';
+import { RefObject, createRef, useEffect, useContext } from 'react';
+import { SearchContext } from '../../contextAPI/context';
 const Movielisting = () => {
   const Movies = useSelector(getAllMovies);
   const Series = useSelector(getAllSeries);
   // const [Movies, setMovies] = useState(movieReturned);
   // const [Series, setSeries] = useState(seriesReturned);
-
+  const searchList = useSelector(getSearch);
   const imgRef: RefObject<HTMLDivElement> = createRef();
   const serRef: RefObject<HTMLDivElement> = createRef();
-
-  const value = useContext(SearchContext);
-
+  const search = useContext(SearchContext)?.search;
   const MovieRender = ({ Details }: MovieRenderingType) => {
     return Details?.Response === 'True' ? (
       <>
@@ -25,29 +27,33 @@ const Movielisting = () => {
         })}
       </>
     ) : (
-      <p>Loading...</p>
+      <p>{Details?.Error}</p>
     );
   };
   useEffect(() => {
-    console.log('movielisting');
-  }, [value?.search]);
+    console.log('movielisting ', searchList);
+  }, [searchList]);
   return (
     <div className='app__movielisting-container flex-column-gap '>
-      {value?.search?.movie ? (
-        <>
-          <MovieRenderComponent
-            Title={'Movies'}
-            reference={imgRef}
-            MovieRender={MovieRender}
-            RenderElement={value.search.movie}
-          />
-          <MovieRenderComponent
-            Title={'Series'}
-            reference={serRef}
-            MovieRender={MovieRender}
-            RenderElement={value.search.series}
-          />
-        </>
+      {search ? (
+        searchList?.movie ? (
+          <>
+            <MovieRenderComponent
+              Title={'Movies'}
+              reference={imgRef}
+              MovieRender={MovieRender}
+              RenderElement={searchList.movie}
+            />
+            <MovieRenderComponent
+              Title={'Series'}
+              reference={serRef}
+              MovieRender={MovieRender}
+              RenderElement={searchList.series}
+            />
+          </>
+        ) : (
+          <p>Loading</p>
+        )
       ) : (
         <>
           <MovieRenderComponent
