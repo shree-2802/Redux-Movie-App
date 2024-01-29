@@ -1,14 +1,11 @@
 import { createContext, useState } from 'react';
-import { searchType, ChildrenProps, SearchContextType } from '../Types/types';
-
+import { ChildrenProps, SearchContextType } from '../Types/types';
 export const SearchContext = createContext<SearchContextType | null>(null);
-
 const Context = ({ children }: ChildrenProps) => {
-  const [search, setSearch] = useState<searchType | null>(null);
-
+  const [search, setSearch] = useState(false);
   const value: SearchContextType = {
-    search: search,
-    setSearch: setSearch,
+    search,
+    setSearch,
   };
   return (
     <SearchContext.Provider value={value}>{children}</SearchContext.Provider>

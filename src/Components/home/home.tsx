@@ -9,6 +9,7 @@ const Home = () => {
   useEffect(() => {
     dispatch(fetchMovies());
     dispatch(fetchSeries());
+    console.log('hiii home');
   }, [dispatch]);
   return (
     <div>

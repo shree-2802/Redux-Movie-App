@@ -1,23 +1,23 @@
 import { useNavigate } from 'react-router-dom';
 import { icon } from '../../assets';
 import Search from '../search-component/search';
-import { SearchContext } from '../../context/Context';
-import { useContext } from 'react';
 import './header.scss';
+import { SearchContext } from '../../contextAPI/context';
+import { useContext } from 'react';
 import { useAppDispatch } from '../../redux';
 import { removeSearch } from '../../redux/movies/movieSlice';
 
 const Header = () => {
   const navigate = useNavigate();
-  const value = useContext(SearchContext);
   const dispatch = useAppDispatch();
+  const search = useContext(SearchContext);
   return (
     <div className='app__header'>
       <h3
         style={{ cursor: 'pointer' }}
         onClick={() => {
-          value?.setSearch(null);
           dispatch(removeSearch());
+          search?.setSearch(false);
           navigate('/');
         }}
       >
