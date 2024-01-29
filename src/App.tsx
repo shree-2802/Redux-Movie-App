@@ -7,12 +7,12 @@ import {
   PageNotFound,
   Footer,
 } from './Components';
-import Context from './context/Context';
+import Context from './contextAPI/context';
 
 const App = () => {
   return (
-    <div className='sass'>
-      <Context>
+    <Context>
+      <div className='sass'>
         <Router>
           <Header />
           <Routes>
@@ -22,8 +22,8 @@ const App = () => {
           </Routes>
           <Footer />
         </Router>
-      </Context>
-    </div>
+      </div>
+    </Context>
   );
 };
 
