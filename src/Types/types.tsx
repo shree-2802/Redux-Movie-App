@@ -63,8 +63,8 @@ export type ChildrenProps = {
 };
 
 export type SearchContextType = {
-  search: searchType | null;
-  setSearch: React.Dispatch<React.SetStateAction<searchType | null>>;
+  search: boolean | null;
+  setSearch: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type MovieRenderingType = {
